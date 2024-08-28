@@ -1,0 +1,8 @@
+[package]
+name = "refold"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+argtea = { version = "0.1.1", path = "../argtea/main" }
+textwrap = "0.16.1"
