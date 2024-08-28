@@ -5,6 +5,8 @@ version = 3
 [[package]]
 name = "argtea"
 version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "93e804444160dc387f2e745ed8ed91ea0add7ded939804ee489b51d1d6aa6561"
 
 [[package]]
 name = "refold"
