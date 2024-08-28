@@ -3,6 +3,12 @@ name = "refold"
 version = "0.1.0"
 edition = "2021"
 
+license = "GPL-2.0-or-later"
+repository = "https://github.com/wr7/refold"
+description = "A command-line utility for wrapping text"
+keywords = ["fold", "wrap", "line_wrapping"]
+categories = ["command-line-utilities"]
+
 [dependencies]
 argtea = "0.1.2"
 textwrap = "0.16.1"
