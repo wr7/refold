@@ -14,6 +14,7 @@ pub enum SplitMode {
 pub struct Parameters {
     pub split_mode: SplitMode,
     pub width: usize,
+    pub prefix: Option<String>,
 }
 
 argtea_impl! {
@@ -32,6 +33,24 @@ argtea_impl! {
             width_ = width
                 .parse()
                 .map_err(|_| format!("invalid width `\x1b[1m{width}`\x1b[m"))?;
+        }
+
+        /// Sets the prefix for each line (default: auto detect).
+        ///
+        /// Set to an empty string to disable prefixing entirely.
+        ("--prefix" | "-p", prefix) => {
+            let prefix = prefix.ok_or("expected prefix")?;
+
+            prefix_ = Some(prefix);
+        }
+
+        /// Makes `refold` autodetect the prefix for each line (default).
+        ///
+        /// To disable, pass an empty string to the `-p` flag.
+        ("--auto-prefix" | "-a", prefix) => {
+            let prefix = prefix.ok_or("expected prefix")?;
+
+            prefix_ = None;
         }
 
         /// Sets the split mode to "boundaries" mode (default).
@@ -77,12 +96,13 @@ argtea_impl! {
         fn parse() -> Result<Self, Cow<'static, str>> {
             let mut split_mode = SplitMode::Boundaries;
             let mut width_ = 80;
+            let mut prefix_ = None;
 
             let mut args = std::env::args().skip(1);
 
             parse!(args);
 
-            return Ok(Self { split_mode, width: width_ });
+            return Ok(Self { split_mode, width: width_, prefix: prefix_ });
         }
     }
 }
