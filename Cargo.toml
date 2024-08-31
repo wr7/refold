@@ -10,5 +10,5 @@ keywords = ["fold", "wrap", "line_wrapping"]
 categories = ["command-line-utilities"]
 
 [dependencies]
-argtea = "0.1.2"
+argtea = "1.0.0"
 textwrap = "0.16.1"
