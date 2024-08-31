@@ -1,6 +1,15 @@
 ## Refold
 Refold is a commandline tool with similar functionality to unix `fold`.
 
-Refold by default uses the unicode split property to determine where it can 
-split text. Additionally, it will automatically detect line prefixes and empty 
-lines. This makes wrapping comments or doc-comments a breeze.
+Refold attempts to have more sane defaults and more modern functionality.
+
+|                     | `refold`                             | unix `fold` |
+| :-----------------: | :----------------------------------: | :---------: |
+| Line prefix support | Yes                                  | No          |
+| Line endings        | LF and can auto detect CRLF          | LF only     |
+| Default wrapping    | Soft via Unicode splittable property | Hard        |
+| Hard wrapping       | Yes                                  | Yes         |
+| Soft wrapping       | Yes                                  | Yes [^1]    |
+
+[^1]: `fold` leaves trailing spaces and can only split ASCII space-separated
+       words.
