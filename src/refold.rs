@@ -96,7 +96,7 @@ impl<'a> Refolder<'a> {
                 .unwrap_or(&self.line_buf);
 
             if !line.is_empty() {
-                self.current_paragraph += &line;
+                self.current_paragraph += line;
 
                 if !eof {
                     self.current_paragraph += " ";

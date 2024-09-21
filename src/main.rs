@@ -29,7 +29,7 @@ impl Parameters {
 
 fn main() {
     let parameters = Parameters::parse().unwrap_or_else(|err| {
-        eprintln!("\x1b[1;31mrefold error:\x1b[m{}", err);
+        eprintln!("\x1b[1;31mrefold error:\x1b[m{err}");
         std::process::exit(1)
     });
 

@@ -110,16 +110,14 @@ argtea_impl! {
 impl SplitMode {
     pub fn break_words(&self) -> bool {
         match self {
-            SplitMode::Spaces => false,
-            SplitMode::Boundaries => false,
+            SplitMode::Spaces | SplitMode::Boundaries => false,
             SplitMode::Characters => true,
         }
     }
     pub fn word_separator(&self) -> WordSeparator {
         match self {
             SplitMode::Spaces => WordSeparator::AsciiSpace,
-            SplitMode::Boundaries => WordSeparator::UnicodeBreakProperties,
-            SplitMode::Characters => WordSeparator::UnicodeBreakProperties,
+            SplitMode::Boundaries | SplitMode::Characters => WordSeparator::UnicodeBreakProperties,
         }
     }
 }
