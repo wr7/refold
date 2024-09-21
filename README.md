@@ -39,6 +39,18 @@ line prefixes.
 1. [Install Cargo](https://www.rust-lang.org/tools/install).
 2. Run `cargo install refold`.
 
+### Binaries
+Binaries for `arm64` and `x86_64` can be found in 
+[the releases section](https://github.com/wr7/refold/releases/latest) of the github.
+
+These are statically linked, so they should run on pretty much any linux distribution including
+NixOS and Alpine.
+
+Additionally, these binaries are packaged in the following formats:
+ - APK
+ - DEB
+ - RPM
+
 ### Nix
 Alternatively, a Nix package can be found in the releases section. Unfortunately, `refold` will not
 be updated automatically when using this method.
