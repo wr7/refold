@@ -3,6 +3,7 @@ use textwrap::LineEnding;
 
 mod cmdline;
 mod refold;
+pub(crate) mod util;
 
 impl Parameters {
     fn textwrap_options<'a>(

@@ -1,11 +1,11 @@
-use std::io::{self, BufRead as _, StdinLock, StdoutLock, Write as _};
+use std::io::{self, StdoutLock, Write as _};
 
 use textwrap::LineEnding;
 
-use crate::cmdline::Parameters;
+use crate::{cmdline::Parameters, util};
 
 pub struct Refolder<'a> {
-    stdin: StdinLock<'static>,
+    stdin: util::Lines,
     stdout: StdoutLock<'static>,
 
     parameters: &'a Parameters,
@@ -13,16 +13,20 @@ pub struct Refolder<'a> {
     prefix: Option<String>,
     line_ending: Option<LineEnding>,
 
+    /// Whether or not to put a trailing newline at the end of the output
     trailing_newline: bool,
 
+    /// The accumulated text that will be wrapped when the current paragraph
+    /// ends
     current_paragraph: String,
+    /// Buffer for current line of stdin
     line_buf: String,
 }
 
 impl<'a> Refolder<'a> {
     pub fn new(parameters: &'a Parameters) -> Self {
         Self {
-            stdin: std::io::stdin().lock(),
+            stdin: util::Lines::new(std::io::stdin().lock()),
             stdout: std::io::stdout().lock(),
 
             parameters,
@@ -56,14 +60,18 @@ impl<'a> Refolder<'a> {
 
     pub fn refold(mut self) {
         loop {
-            self.line_buf.clear();
-            self.stdin
-                .read_line(&mut self.line_buf)
+            self.stdin.set_buf(self.line_buf);
+
+            self.line_buf = self
+                .stdin
+                .next()
+                .transpose()
                 .unwrap_or_else(|err| {
                     eprintln!("refold: failed to read from stdin: {err}");
 
                     std::process::exit(err.raw_os_error().unwrap_or(1));
-                });
+                })
+                .unwrap_or_default();
 
             let mut eof = true;
 
@@ -115,8 +123,7 @@ impl<'a> Refolder<'a> {
         self.stdout.write_all(
             textwrap::fill(
                 &self.current_paragraph,
-                &self
-                    .parameters
+                self.parameters
                     .textwrap_options(&mut self.line_ending, self.prefix.as_deref().unwrap_or("")),
             )
             .as_bytes(),
