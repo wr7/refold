@@ -8,6 +8,7 @@ repository = "https://github.com/wr7/refold"
 description = "A command-line utility for wrapping text"
 keywords = ["fold", "wrap", "line_wrapping"]
 categories = ["command-line-utilities"]
+include = ["/src"]
 
 [dependencies]
 argtea = "1.0.0"
