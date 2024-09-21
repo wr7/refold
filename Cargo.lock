@@ -10,7 +10,7 @@ checksum = "e4174b041266795cd28cb6ba48dbb25f7131725471f26f6fc29c7241cff2fe4d"
 
 [[package]]
 name = "refold"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "argtea",
  "textwrap",
@@ -30,7 +30,6 @@ checksum = "23d434d3f8967a09480fb04132ebe0a3e088c173e6d0ee7897abbdf4eab0f8b9"
 dependencies = [
  "smawk",
  "unicode-linebreak",
- "unicode-width",
 ]
 
 [[package]]
@@ -38,9 +37,3 @@ name = "unicode-linebreak"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3b09c83c3c29d37506a3e260c08c03743a6bb66a9cd432c6934ab501a190571f"
-
-[[package]]
-name = "unicode-width"
-version = "0.1.13"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0336d538f7abc86d282a4189614dfaa90810dfc2c6f6427eaf88e16311dd225d"
