@@ -46,7 +46,7 @@ argtea_impl! {
 
         /// Makes `refold` autodetect the prefix for each line (default).
         ///
-        /// To disable, pass an empty string to the `-p` flag.
+        /// To disable, pass an empty string to the `--prefix` flag.
         ("--auto-prefix" | "-a", prefix) => {
             let prefix = prefix.ok_or("expected prefix")?;
 
@@ -55,7 +55,7 @@ argtea_impl! {
 
         /// Sets the split mode to "boundaries" mode (default).
         ///
-        /// In character mode, line wrapping may occur in-between unicode breakable
+        /// In boundaries mode, line wrapping may occur in-between unicode breakable
         /// characters.
         ("--boundaries" | "-b" | "--unicode-boundaries") => {
             split_mode = SplitMode::Boundaries;
